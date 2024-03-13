@@ -155,6 +155,7 @@ def main():
 
     # df = df[df['datetime'] > start_time]
 
+    st.subheader("Median Transaction Costs in USD")
     plot_data(df)
     # create_table(df)
     create_dataframe(df, 'txcosts_median_usd')
