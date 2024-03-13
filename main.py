@@ -68,6 +68,60 @@ def create_table(df):
 
     st.table(df)
 
+def create_df_clean(df):
+    ## order by unix desc and only keep latest value per origin_key
+    df = df.pivot_table(index=['origin_key', 'granularity', 'unix', 'datetime'], columns='metric_key', values='value').reset_index()
+    df = df.sort_values('unix', ascending=False).drop_duplicates('origin_key')
+    df = df[['origin_key', 'txcosts_avg_usd', 'txcosts_median_usd', 'txcosts_native_median_usd', 'datetime']]
+    df.set_index('origin_key', inplace=True)
+
+    #order by value ascending
+    df = df.sort_values('txcosts_avg_usd', ascending=True)
+
+    ##value column in USD
+    df['txcosts_avg_usd'] = df['txcosts_avg_usd'].apply(lambda x: f"${x:,.3f}")
+    df['txcosts_median_usd'] = df['txcosts_median_usd'].apply(lambda x: f"${x:,.3f}")
+    df['txcosts_native_median_usd'] = df['txcosts_native_median_usd'].apply(lambda x: f"${x:,.3f}")
+
+    ## rename column value to "Median Transaction Costs in USD" and datetime to "Last Updated"
+    df.rename(columns={'datetime': 'Last Updated (UTC)', 'txcosts_median_usd': 'Median Tx Costs', 'txcosts_avg_usd': 'Avg Tx Costs', 'txcosts_native_median_usd': 'Native Transfer'}, inplace=True)
+
+    ##reorder columns
+    df = df[['Avg Tx Costs', 'Median Tx Costs', 'Native Transfer', 'Last Updated (UTC)']]
+
+    ## replace values "$nan" with "-"
+    df = df.replace('$nan', '-')
+
+    df.reset_index(inplace=True)
+    return df
+
+def create_df_list(df, metric_key):
+    ## filter df to metric_key == txcosts_median_usd put these values in list per origin_key
+    df = df[df['metric_key'] == metric_key]
+    df = df.sort_values('unix', ascending=False)
+    df = df.groupby('origin_key')['value'].apply(list).reset_index()
+    return df
+
+def create_dataframe(df, metric_key):
+    df_clean = create_df_clean(df)
+    df_list = create_df_list(df, metric_key)
+
+    ## join df_clean and df_median on origin_key
+    df_clean = df_clean.merge(df_list, on='origin_key', how='left')
+    df_clean.rename(columns={'value': 'Median Tx Costs'}, inplace=True)
+
+    st.dataframe(
+        df,
+        column_config={
+            "origin_key": "Chain",
+            "Median Tx Costs": st.column_config.LineChartColumn(
+                "Median Tx Costs", y_min=0, y_max=2, y_axis_format="%.3f"
+            ),
+        },
+        hide_index=True,
+    )
+
+
 def main():
     st.image('gtp-logo-on-white.png')
     # Check if 5 minutes have passed since the last API call
@@ -99,6 +153,7 @@ def main():
 
     plot_data(df)
     create_table(df)
+    create_dataframe(df, 'txcosts_median_usd')
 
     url = "https://www.growthepie.xyz"
     link_text = "Data from growthepie.xyz"
