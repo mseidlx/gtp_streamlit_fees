@@ -68,7 +68,7 @@ def main():
     st.header("Median Transaction Costs in USD")
     st.subheader("Data from growthepie.xyz")
     plot_data(df)
-    # create_table(df)
+    create_table(df)
 
 if __name__ == "__main__":
     main()
