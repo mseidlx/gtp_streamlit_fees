@@ -130,7 +130,6 @@ def create_dataframe(df, metric_key):
             "Native Transfer": None,
         },
         hide_index=True,
-        height=700,
     )
 
 
