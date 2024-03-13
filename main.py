@@ -115,7 +115,7 @@ def create_dataframe(df, metric_key):
         column_config={
             "origin_key": "Chain",
             "Median Tx Costs Over Time": st.column_config.LineChartColumn(
-                "Median Tx Costs Over Time", y_min=0, y_max=2
+                "Median Tx Costs Over Time"
             ),
         },
         hide_index=True,
