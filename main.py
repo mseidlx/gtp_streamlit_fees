@@ -57,10 +57,10 @@ def create_table(df):
     df['txcosts_native_median_usd'] = df['txcosts_native_median_usd'].apply(lambda x: f"${x:,.3f}")
 
     ## rename column value to "Median Transaction Costs in USD" and datetime to "Last Updated"
-    df.rename(columns={'datetime': 'Last Updated (UTC)', 'txcosts_median_usd': 'Median Transaction Costs', 'txcosts_avg_usd': 'Average Transaction Costs', 'txcosts_native_median_usd': 'Native Transfer'}, inplace=True)
+    df.rename(columns={'datetime': 'Last Updated (UTC)', 'txcosts_median_usd': 'Median Tx Costs', 'txcosts_avg_usd': 'Avg Tx Costs', 'txcosts_native_median_usd': 'Native Transfer'}, inplace=True)
 
     ##reorder columns
-    df = df[['Average Transaction Costs', 'Median Transaction Costs', 'Native Transfer', 'Last Updated (UTC)']]
+    df = df[['Avg Tx Costs', 'Median Tx Costs', 'Native Transfer', 'Last Updated (UTC)']]
 
     ## replace values "$nan" with "-"
     df = df.replace('$nan', '-')
