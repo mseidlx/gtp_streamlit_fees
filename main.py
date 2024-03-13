@@ -42,7 +42,7 @@ def plot_data(df):
     df.rename(columns={'datetime': 'Date', 'value': 'Median Transaction Costs', 'origin_key' : 'Chain'}, inplace=True)
     df.reset_index(drop=True, inplace=True)
 
-    st.line_chart(df, x='Date', y='Median Transaction Costs', color='Chain', height=450, width=1000)
+    st.line_chart(df, x='Date', y='Median Transaction Costs', color='Chain', height=450, width=1200)
 
 # def create_table(df):
 #     ## order by unix desc and only keep latest value per origin_key
@@ -156,6 +156,7 @@ def main():
         'Chains',
         ['OP Mainnet', 'Arbitrum', 'Base', 'Zora', 'Starknet', 'Linea', 'zkSync Era', 'Polygon zkEVM', 'Scroll'],
         ['OP Mainnet', 'Arbitrum', 'Base', 'Zora', 'Starknet', 'Linea', 'zkSync Era', 'Polygon zkEVM', 'Scroll'])
+    
     df = df[df['origin_key'].isin(options)]
 
     # start_time = st.slider(
