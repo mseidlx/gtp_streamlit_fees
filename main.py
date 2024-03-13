@@ -17,7 +17,7 @@ def fetch_data():
     df = pd.DataFrame(data)
     
     # Filter based on conditions
-    filtered_df = df[(df['granularity'] == 'hourly')]
+    filtered_df = df[(df['granularity'] == '10_min')]
     # Convert unix timestamp to datetime for better readability on plot
     filtered_df['datetime'] = pd.to_datetime(filtered_df['unix'], unit='ms')
 
