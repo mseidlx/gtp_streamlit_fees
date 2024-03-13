@@ -61,7 +61,7 @@ def main():
     if current_time - st.session_state['last_run'] > 300:  # 5 minutes in seconds
         df = fetch_data()
         st.session_state['last_run'] = current_time
-        st.experimental_rerun()
+        st.rerun()
     else:
         df = fetch_data()  # Assuming you want to load the existing data even if not updating
 
