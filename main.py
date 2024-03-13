@@ -119,6 +119,10 @@ def create_dataframe(df, metric_key):
             "Median Tx Costs Over Time": st.column_config.LineChartColumn(
                 "Median Tx Costs Over Time"
             ),
+            "Avg Tx Costs": st.column_config.ProgressColumn(
+                "Avg Tx Costs",
+                help="The average cost of a transaction in USD"
+            ),
         },
         hide_index=True,
     )
