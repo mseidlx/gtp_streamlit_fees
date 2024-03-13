@@ -155,7 +155,7 @@ def main():
     options = st.multiselect(
         'Chains',
         ['OP Mainnet', 'Arbitrum', 'Base', 'Zora', 'Starknet', 'Linea', 'zkSync Era', 'Polygon zkEVM', 'Scroll'],
-        ['OP Mainnet', 'Arbitrum', 'Base', 'Zora', 'Starknet', 'Linea', 'zkSync Era', 'Polygon zkEVM', 'Scroll'])
+        ['OP Mainnet', 'Arbitrum', 'Base', 'Zora', 'Starknet', 'Linea', 'zkSync Era'])
     
     df = df[df['origin_key'].isin(options)]
 
