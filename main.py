@@ -37,7 +37,7 @@ def plot_data(df):
     df = df.copy()
     df = df[(df['metric_key'] == 'txcosts_median_usd')]
     df.rename(columns={'datetime': 'Date', 'value': 'Median Transaction Costs', 'origin_key' : 'Chain'}, inplace=True)
-    df.set_index('Date', inplace=True)
+    df.reset_index(drop=True, inplace=True)
 
     print(df.head())
 
