@@ -108,14 +108,14 @@ def create_dataframe(df, metric_key):
 
     ## join df_clean and df_median on origin_key
     df_clean = df_clean.merge(df_list, on='origin_key', how='left')
-    df_clean.rename(columns={'value': 'Median Tx Costs'}, inplace=True)
+    df_clean.rename(columns={'value': 'Median Tx Costs Over Time'}, inplace=True)
 
     st.dataframe(
         df_clean,
         column_config={
             "origin_key": "Chain",
-            "Median Tx Costs": st.column_config.LineChartColumn(
-                "Median Tx Costs", y_min=0, y_max=2
+            "Median Tx Costs Over Time": st.column_config.LineChartColumn(
+                "Median Tx Costs Over Time", y_min=0, y_max=2
             ),
         },
         hide_index=True,
