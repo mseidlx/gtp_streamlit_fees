@@ -31,7 +31,7 @@ def plot_data(df):
 def plot_plotly(df):
 
     fig = px.line(df, x="datetime", y="value", color="origin_key", title="Med txn costs in USD")
-    fig.update_traces(mode="markers+lines", hovertemplate=None)
+    fig.update_traces(mode="lines", hovertemplate=None)
     fig.update_layout(hovermode="x")
 
     st.plotly_chart(fig, use_container_width=True)
