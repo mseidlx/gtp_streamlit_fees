@@ -19,8 +19,8 @@ def fetch_data():
     # Filter based on conditions
     filtered_df = df[(df['metric_key'] == 'txcosts_median_usd') & (df['granularity'] == 'hourly')]
     
-    ## break up origin_keys into separate columns
-    filtered_df.pivot_table(index='unix', columns='origin_key', values='value')
+    # ## break up origin_keys into separate columns
+    # filtered_df.pivot_table(index='unix', columns='origin_key', values='value')
 
     return filtered_df
 
@@ -28,7 +28,7 @@ def plot_data(df):
     # Convert unix timestamp to datetime for better readability on plot
     df['datetime'] = pd.to_datetime(df['unix'], unit='ms')
     
-    st.line_chart(df, x='datetime', y='value')
+    st.line_chart(df, x='datetime', y='value'. color='origin_key')
 
 def main():
     # Check if 5 minutes have passed since the last API call
