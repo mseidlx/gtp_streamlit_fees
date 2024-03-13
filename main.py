@@ -55,7 +55,7 @@ def create_table(df):
     st.table(df)
 
 def main():
-    st.image('gtp-logo-on-white.png', caption='growthepie logo')
+    st.image('gtp-logo-on-white.png')
     # Check if 5 minutes have passed since the last API call
     current_time = time.time()
     if current_time - st.session_state['last_run'] > 300:  # 5 minutes in seconds
