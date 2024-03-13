@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import requests
 import time
-import plotly.express as px
 
 # Initialize or get the last run timestamp
 if 'last_run' not in st.session_state:
@@ -27,14 +26,6 @@ def fetch_data():
 
 def plot_data(df):
     st.line_chart(df, x='datetime', y='value', color='origin_key')
-
-def plot_plotly(df):
-
-    fig = px.line(df, x="datetime", y="value", color="origin_key", title="Med txn costs in USD")
-    fig.update_traces(mode="lines", hovertemplate=None)
-    fig.update_layout(hovermode="x")
-
-    st.plotly_chart(fig, use_container_width=True)
 
 def create_table(df):
     ## order by unix desc and only keep latest value per origin_key
