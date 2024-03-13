@@ -152,7 +152,7 @@ def main():
     # df = df[df['datetime'] > start_time]
 
     plot_data(df)
-    create_table(df)
+    # create_table(df)
     create_dataframe(df, 'txcosts_median_usd')
 
     url = "https://www.growthepie.xyz"
