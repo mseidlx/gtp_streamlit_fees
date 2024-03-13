@@ -164,7 +164,7 @@ def main():
     link_text = "Data from growthepie.xyz"
     st.markdown(f'<a href="{url}" target="_blank">{link_text}</a>', unsafe_allow_html=True)
 
-    link_text = "Twitter Proflie"
+    link_text = "Twitter Profile"
     st.markdown(f'<a href="https://twitter.com/growthepie_eth" target="_blank">{link_text}</a>', unsafe_allow_html=True)
 
 if __name__ == "__main__":
