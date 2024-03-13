@@ -19,7 +19,7 @@ def fetch_data():
     print(df.head())
     
     # Filter based on conditions
-    filtered_df = df[(df['metric_key'] == 'txcosts_median_usd') & (df['granularity'] == 'hour')]
+    filtered_df = df[(df['metric_key'] == 'txcosts_median_usd') & (df['granularity'] == 'hourly')]
     
     return filtered_df
 
