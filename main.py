@@ -17,21 +17,20 @@ def fetch_data():
     df = pd.DataFrame(data)
     
     # Filter based on conditions
-    filtered_df = df[(df['granularity'] == '10_min')]
+    df = df[(df['granularity'] == '10_min')]
     # Convert unix timestamp to datetime for better readability on plot
-    filtered_df['datetime'] = pd.to_datetime(filtered_df['unix'], unit='ms')
+    df['datetime'] = pd.to_datetime(df['unix'], unit='ms')
 
     ##replace origin_key values with cleaner names, i.e. optimsim with OP mainnet
-    filtered_df['origin_key'] = filtered_df['origin_key'].replace('optimism', 'OP Mainnet')
-    filtered_df['origin_key'] = filtered_df['origin_key'].replace('arbitrum', 'Arbitrum')
-    filtered_df['origin_key'] = filtered_df['origin_key'].replace('zksync_era', 'zkSync Era')
-    filtered_df['origin_key'] = filtered_df['origin_key'].replace('base', 'Base')
-    filtered_df['origin_key'] = filtered_df['origin_key'].replace('zora', 'Zora')
-    filtered_df['origin_key'] = filtered_df['origin_key'].replace('starknet', 'Starknet')
-    filtered_df['origin_key'] = filtered_df['origin_key'].replace('linea', 'Linea')
-    
+    df['origin_key'] = df['origin_key'].replace('optimism', 'OP Mainnet')
+    df['origin_key'] = df['origin_key'].replace('arbitrum', 'Arbitrum')
+    df['origin_key'] = df['origin_key'].replace('zksync_era', 'zkSync Era')
+    df['origin_key'] = df['origin_key'].replace('base', 'Base')
+    df['origin_key'] = df['origin_key'].replace('zora', 'Zora')
+    df['origin_key'] = df['origin_key'].replace('starknet', 'Starknet')
+    df['origin_key'] = df['origin_key'].replace('linea', 'Linea')
 
-    return filtered_df
+    return df
 
 def plot_data(df):
     ## rename column datetime to "Date" and value to "Median Transaction Costs in USD"
