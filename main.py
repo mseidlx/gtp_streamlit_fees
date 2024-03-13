@@ -36,8 +36,11 @@ def create_table(df):
     #order by value ascending
     df = df.sort_values('value', ascending=True)
 
+    ##value column in USD
+    df['value'] = df['value'].apply(lambda x: f"${x:,.3f}")
+
     ## rename column value to "Median Transaction Costs in USD" and datetime to "Last Updated"
-    df.columns = ["Median Transaction Costs in USD", "Last Updated"]
+    df.columns = ["Median Transaction Costs in USD", "Last Updated (UTC)"]
 
     st.table(df)
 
