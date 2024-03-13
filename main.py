@@ -31,6 +31,7 @@ def create_table(df):
     ## order by unix desc and only keep latest value per origin_key
     df = df.sort_values('unix', ascending=False).drop_duplicates('origin_key')
     df = df[['origin_key', 'value', 'datetime']]
+    df.set_index('origin_key', inplace=True)
     st.table(df)
 
 def main():
