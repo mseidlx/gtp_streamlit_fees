@@ -75,7 +75,7 @@ def create_df_list(df, metric_key):
     ## filter df to metric_key == txcosts_median_usd put these values in list per origin_key
     df = df[df['metric_key'] == metric_key]
     df = df.sort_values('unix', ascending=True)
-    df = df.groupby('origin_key')['value'].apply(list)[:74].reset_index()
+    df = df.groupby('origin_key')['value'].apply(list).reset_index()
     return df
 
 def create_dataframe(df, metric_key):
