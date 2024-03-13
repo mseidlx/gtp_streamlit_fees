@@ -44,6 +44,8 @@ def main():
     else:
         df = fetch_data()  # Assuming you want to load the existing data even if not updating
 
+    st.header("Median Transaction Costs in USD")
+    st.subheader("Data from growthepie.xyz")
     plot_data(df)
     create_table(df)
 
