@@ -27,11 +27,7 @@ def plot_data(df):
     # Convert unix timestamp to datetime for better readability on plot
     df['datetime'] = pd.to_datetime(df['unix'], unit='s')
     
-    # Plotting
-    fig = px.line(df, x='datetime', y='value', color='origin_key',
-                  labels={'value': 'Value', 'datetime': 'Datetime'},
-                  title='Median Transaction Costs (USD) Over Time by Origin Key')
-    st.plotly_chart(fig, use_container_width=True)
+    st.line_chart(df, x='datetime', y='value')
 
 def main():
     # Check if 5 minutes have passed since the last API call
