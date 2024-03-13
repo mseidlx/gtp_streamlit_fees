@@ -15,6 +15,8 @@ def fetch_data():
     
     # Convert JSON to DataFrame
     df = pd.DataFrame(data)
+
+    print(df.head())
     
     # Filter based on conditions
     filtered_df = df[(df['metric_key'] == 'txcosts_median_usd') & (df['granularity'] == 'hour')]
