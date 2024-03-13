@@ -26,6 +26,7 @@ def fetch_data():
 
 def plot_data(df):
     ## rename column datetime to "Date" and value to "Median Transaction Costs in USD"
+    df = df.copy()
     df.rename(columns={'datetime': 'Date', 'value': 'Median Transaction Costs in USD', 'origin_key' : 'Chain'}, inplace=True)
 
     st.line_chart(df, x='Date', y='Median Transaction Costs in USD', color='Chain')
