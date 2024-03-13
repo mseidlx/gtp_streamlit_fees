@@ -22,7 +22,7 @@ def fetch_data():
     filtered_df['datetime'] = pd.to_datetime(filtered_df['unix'], unit='ms')
 
     ##replace origin_key values with cleaner names, i.e. optimsim with OP mainnet
-    filtered_df['origin_key'] = filtered_df['origin_key'].replace('optimism', 'OP mainnet')
+    filtered_df['origin_key'] = filtered_df['origin_key'].replace('optimism', 'OP Mainnet')
     filtered_df['origin_key'] = filtered_df['origin_key'].replace('arbitrum', 'Arbitrum')
     filtered_df['origin_key'] = filtered_df['origin_key'].replace('zksync_era', 'zkSync Era')
     filtered_df['origin_key'] = filtered_df['origin_key'].replace('base', 'Base')
