@@ -44,31 +44,31 @@ def plot_data(df):
 
     st.line_chart(df, x='Date', y='Median Transaction Costs', color='Chain', height=450)
 
-def create_table(df):
-    ## order by unix desc and only keep latest value per origin_key
-    df = df.pivot_table(index=['origin_key', 'granularity', 'unix', 'datetime'], columns='metric_key', values='value').reset_index()
-    df = df.sort_values('unix', ascending=False).drop_duplicates('origin_key')
-    df = df[['origin_key', 'txcosts_avg_usd', 'txcosts_median_usd', 'txcosts_native_median_usd', 'datetime']]
-    df.set_index('origin_key', inplace=True)
+# def create_table(df):
+#     ## order by unix desc and only keep latest value per origin_key
+#     df = df.pivot_table(index=['origin_key', 'granularity', 'unix', 'datetime'], columns='metric_key', values='value').reset_index()
+#     df = df.sort_values('unix', ascending=False).drop_duplicates('origin_key')
+#     df = df[['origin_key', 'txcosts_avg_usd', 'txcosts_median_usd', 'txcosts_native_median_usd', 'datetime']]
+#     df.set_index('origin_key', inplace=True)
 
-    #order by value ascending
-    df = df.sort_values('txcosts_avg_usd', ascending=True)
+#     #order by value ascending
+#     df = df.sort_values('txcosts_avg_usd', ascending=True)
 
-    ##value column in USD
-    df['txcosts_avg_usd'] = df['txcosts_avg_usd'].apply(lambda x: f"${x:,.3f}")
-    df['txcosts_median_usd'] = df['txcosts_median_usd'].apply(lambda x: f"${x:,.3f}")
-    df['txcosts_native_median_usd'] = df['txcosts_native_median_usd'].apply(lambda x: f"${x:,.3f}")
+#     ##value column in USD
+#     df['txcosts_avg_usd'] = df['txcosts_avg_usd'].apply(lambda x: f"${x:,.3f}")
+#     df['txcosts_median_usd'] = df['txcosts_median_usd'].apply(lambda x: f"${x:,.3f}")
+#     df['txcosts_native_median_usd'] = df['txcosts_native_median_usd'].apply(lambda x: f"${x:,.3f}")
 
-    ## rename column value to "Median Transaction Costs in USD" and datetime to "Last Updated"
-    df.rename(columns={'datetime': 'Last Updated (UTC)', 'txcosts_median_usd': 'Median Tx Costs', 'txcosts_avg_usd': 'Avg Tx Costs', 'txcosts_native_median_usd': 'Native Transfer'}, inplace=True)
+#     ## rename column value to "Median Transaction Costs in USD" and datetime to "Last Updated"
+#     df.rename(columns={'datetime': 'Last Updated (UTC)', 'txcosts_median_usd': 'Median Tx Costs', 'txcosts_avg_usd': 'Avg Tx Costs', 'txcosts_native_median_usd': 'Native Transfer'}, inplace=True)
 
-    ##reorder columns
-    df = df[['Avg Tx Costs', 'Median Tx Costs', 'Native Transfer', 'Last Updated (UTC)']]
+#     ##reorder columns
+#     df = df[['Avg Tx Costs', 'Median Tx Costs', 'Native Transfer', 'Last Updated (UTC)']]
 
-    ## replace values "$nan" with "-"
-    df = df.replace('$nan', '-')
+#     ## replace values "$nan" with "-"
+#     df = df.replace('$nan', '-')
 
-    st.table(df)
+#     st.table(df)
 
 def create_df_clean(df):
     ## order by unix desc and only keep latest value per origin_key
@@ -127,6 +127,7 @@ def create_dataframe(df, metric_key):
                 help="The average cost of a transaction in USD",
                 format="$%f",
             ),
+            "Native Transfer": None,
         },
         hide_index=True,
     )
