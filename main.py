@@ -123,7 +123,11 @@ def create_dataframe(df, metric_key):
 
 
 def main():
-    st.image('gtp-logo-on-white.png', width=300)
+    #st.image('gtp-logo-on-white.png', width=300)
+    url = "https://www.growthepie.xyz"
+    image_url = "https://i.ibb.co/yd5B6Kj/gtp-logo-on-white.png" 
+    st.markdown(f"[![Alt Text]({image_url})]({url})", unsafe_allow_html=True)
+
     # Check if 5 minutes have passed since the last API call
     current_time = time.time()
     if current_time - st.session_state['last_run'] > 300:  # 5 minutes in seconds
@@ -155,7 +159,6 @@ def main():
     # create_table(df)
     create_dataframe(df, 'txcosts_median_usd')
 
-    url = "https://www.growthepie.xyz"
     link_text = "Data from growthepie.xyz"
     st.markdown(f'<a href="{url}" target="_blank">{link_text}</a>', unsafe_allow_html=True)
 
