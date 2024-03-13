@@ -112,6 +112,9 @@ def create_dataframe(df, metric_key):
     df_clean = df_clean.merge(df_list, on='origin_key', how='left')
     df_clean.rename(columns={'value': 'Median Tx Costs Over Time'}, inplace=True)
 
+    ## drop column Native Transfer
+    df_clean = df_clean.drop(columns='Native Transfer')
+
     st.dataframe(
         df_clean,
         column_config={
