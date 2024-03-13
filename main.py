@@ -15,12 +15,13 @@ def fetch_data():
     
     # Convert JSON to DataFrame
     df = pd.DataFrame(data)
-
-    print(df.head())
     
     # Filter based on conditions
     filtered_df = df[(df['metric_key'] == 'txcosts_median_usd') & (df['granularity'] == 'hourly')]
     
+    ## break up origin_keys into separate columns
+    filtered_df.pivot_table(index='unix', columns='origin_key', values='value')
+
     return filtered_df
 
 def plot_data(df):
