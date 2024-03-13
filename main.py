@@ -28,7 +28,7 @@ def plot_data(df):
     ## rename column datetime to "Date" and value to "Median Transaction Costs in USD"
     df.rename(columns={'datetime': 'Date', 'value': 'Median Transaction Costs in USD', 'origin_key' : 'Chain'}, inplace=True)
 
-    st.line_chart(df, x='datetime', y='value', color='origin_key')
+    st.line_chart(df, x='Date', y='Median Transaction Costs in USD', color='Chain')
 
 def create_table(df):
     ## order by unix desc and only keep latest value per origin_key
