@@ -98,7 +98,7 @@ def create_df_clean(df):
 def create_df_list(df, metric_key):
     ## filter df to metric_key == txcosts_median_usd put these values in list per origin_key
     df = df[df['metric_key'] == metric_key]
-    df = df.sort_values('unix', ascending=False)
+    df = df.sort_values('unix', ascending=True)
     df = df.groupby('origin_key')['value'].apply(list).reset_index()
     return df
 
