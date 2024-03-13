@@ -121,7 +121,8 @@ def create_dataframe(df, metric_key):
             ),
             "Avg Tx Costs": st.column_config.ProgressColumn(
                 "Avg Tx Costs",
-                help="The average cost of a transaction in USD"
+                help="The average cost of a transaction in USD",
+                format="$%f",
             ),
         },
         hide_index=True,
