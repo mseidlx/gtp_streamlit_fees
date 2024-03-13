@@ -44,32 +44,6 @@ def plot_data(df):
 
     st.line_chart(df, x='Date', y='Median Transaction Costs', color='Chain', height=450, width=1200)
 
-# def create_table(df):
-#     ## order by unix desc and only keep latest value per origin_key
-#     df = df.pivot_table(index=['origin_key', 'granularity', 'unix', 'datetime'], columns='metric_key', values='value').reset_index()
-#     df = df.sort_values('unix', ascending=False).drop_duplicates('origin_key')
-#     df = df[['origin_key', 'txcosts_avg_usd', 'txcosts_median_usd', 'txcosts_native_median_usd', 'datetime']]
-#     df.set_index('origin_key', inplace=True)
-
-#     #order by value ascending
-#     df = df.sort_values('txcosts_avg_usd', ascending=True)
-
-#     ##value column in USD
-#     df['txcosts_avg_usd'] = df['txcosts_avg_usd'].apply(lambda x: f"${x:,.3f}")
-#     df['txcosts_median_usd'] = df['txcosts_median_usd'].apply(lambda x: f"${x:,.3f}")
-#     df['txcosts_native_median_usd'] = df['txcosts_native_median_usd'].apply(lambda x: f"${x:,.3f}")
-
-#     ## rename column value to "Median Transaction Costs in USD" and datetime to "Last Updated"
-#     df.rename(columns={'datetime': 'Last Updated (UTC)', 'txcosts_median_usd': 'Median Tx Costs', 'txcosts_avg_usd': 'Avg Tx Costs', 'txcosts_native_median_usd': 'Native Transfer'}, inplace=True)
-
-#     ##reorder columns
-#     df = df[['Avg Tx Costs', 'Median Tx Costs', 'Native Transfer', 'Last Updated (UTC)']]
-
-#     ## replace values "$nan" with "-"
-#     df = df.replace('$nan', '-')
-
-#     st.table(df)
-
 def create_df_clean(df):
     ## order by unix desc and only keep latest value per origin_key
     df = df.pivot_table(index=['origin_key', 'granularity', 'unix', 'datetime'], columns='metric_key', values='value').reset_index()
@@ -101,7 +75,7 @@ def create_df_list(df, metric_key):
     ## filter df to metric_key == txcosts_median_usd put these values in list per origin_key
     df = df[df['metric_key'] == metric_key]
     df = df.sort_values('unix', ascending=True)
-    df = df.groupby('origin_key')['value'].apply(list).reset_index()
+    df = df.groupby('origin_key')['value'].apply(list)[:148].reset_index()
     return df
 
 def create_dataframe(df, metric_key):
@@ -159,20 +133,9 @@ def main():
     
     df = df[df['origin_key'].isin(options)]
 
-    # start_time = st.slider(
-    #     "Timespan",
-    #     min_value=datetime(2024, 3, 12, 1, 00),
-    #     max_value=datetime.now(),
-    #     value=datetime(2024, 3, 12, 11, 00),
-    #     step=timedelta(minutes=10),
-    #     format="MM/DD/YY - hh:mm")
-
-    # df = df[df['datetime'] > start_time]
-
     st.subheader("Median Transaction Costs in USD")
     st.text("Data is updated in 10 minute intervals. Cheap Tx here we come!")
     plot_data(df)
-    # create_table(df)
     create_dataframe(df, 'txcosts_median_usd')
 
     link_text = "Data from growthepie.xyz"
