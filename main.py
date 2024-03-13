@@ -36,9 +36,6 @@ def plot_plotly(df):
 
     fig.show()
 
-# Plot!
-st.plotly_chart(fig, use_container_width=True)
-
 def create_table(df):
     ## order by unix desc and only keep latest value per origin_key
     df = df.sort_values('unix', ascending=False).drop_duplicates('origin_key')
