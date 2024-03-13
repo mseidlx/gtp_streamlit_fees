@@ -84,7 +84,12 @@ def main():
     link_text = "Data from growthepie.xyz"
     st.markdown(f'<a href="{url}" target="_blank">{link_text}</a>', unsafe_allow_html=True)
 
-    # st.subheader("Data from growthepie.xyz")
+    options = st.multiselect(
+        'What Chains do you want to see?',
+        ['OP Mainnet', 'Arbitrum', 'Base', 'Zora', 'Starknet', 'Linea', 'zkSync Era'],
+        ['OP Mainnet', 'Arbitrum', 'Base', 'Zora', 'Starknet', 'Linea', 'zkSync Era'])
+    df = df[df['origin_key'].isin(options)]
+    
     plot_data(df)
     create_table(df)
 
