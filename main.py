@@ -20,7 +20,7 @@ def fetch_data():
     filtered_df = df[(df['metric_key'] == 'txcosts_median_usd') & (df['granularity'] == 'hourly')]
     
     # Convert unix timestamp to datetime for better readability on plot
-    df['datetime'] = pd.to_datetime(df['unix'], unit='ms')
+    filtered_df['datetime'] = pd.to_datetime(filtered_df['unix'], unit='ms')
 
     return filtered_df
 
