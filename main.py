@@ -123,7 +123,7 @@ def create_dataframe(df, metric_key):
 
 
 def main():
-    st.image('gtp-logo-on-white.png', width=200)
+    st.image('gtp-logo-on-white.png', width=300)
     # Check if 5 minutes have passed since the last API call
     current_time = time.time()
     if current_time - st.session_state['last_run'] > 300:  # 5 minutes in seconds
@@ -133,7 +133,7 @@ def main():
     else:
         df = fetch_data()  # Assuming you want to load the existing data even if not updating
 
-    st.header("Median Transaction Costs in USD")
+    st.header("EIP 4844 Tracker")
     
     options = st.multiselect(
         'Chains',
