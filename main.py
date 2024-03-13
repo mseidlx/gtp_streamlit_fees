@@ -28,7 +28,7 @@ def plot_data(df):
     # Convert unix timestamp to datetime for better readability on plot
     df['datetime'] = pd.to_datetime(df['unix'], unit='ms')
     
-    st.line_chart(df, x='datetime', y='value'. color='origin_key')
+    st.line_chart(df, x='datetime', y='value', color='origin_key')
 
 def main():
     # Check if 5 minutes have passed since the last API call
