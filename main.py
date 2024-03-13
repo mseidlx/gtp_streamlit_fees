@@ -129,12 +129,12 @@ def create_dataframe(df, metric_key):
             ),
             "Native Transfer": None,
         },
-        hide_index=True,
-        width=1000
+        hide_index=True
     )
 
 
 def main():
+    st.set_page_config(layout="wide")
     #st.image('gtp-logo-on-white.png', width=300)
     url = "https://www.growthepie.xyz"
     image_url = "https://i.ibb.co/yd5B6Kj/gtp-logo-on-white.png" 
