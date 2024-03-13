@@ -52,6 +52,9 @@ def create_table(df):
     ##reorder columns
     df = df[['Average Transaction Costs', 'Median Transaction Costs', 'Native Transfer', 'Last Updated (UTC)']]
 
+    ## replace values "$nan" with "-"
+    df = df.replace('$nan', '-')
+
     st.table(df)
 
 def main():
