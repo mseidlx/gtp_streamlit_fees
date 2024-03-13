@@ -30,6 +30,8 @@ def fetch_data():
     df['origin_key'] = df['origin_key'].replace('zora', 'Zora')
     df['origin_key'] = df['origin_key'].replace('starknet', 'Starknet')
     df['origin_key'] = df['origin_key'].replace('linea', 'Linea')
+    df['origin_key'] = df['origin_key'].replace('polygon_zkevm', 'Polygon zkEVM')
+    df['origin_key'] = df['origin_key'].replace('scroll', 'Scroll')
 
     return df
 
@@ -141,8 +143,8 @@ def main():
     
     options = st.multiselect(
         'Chains',
-        ['OP Mainnet', 'Arbitrum', 'Base', 'Zora', 'Starknet', 'Linea', 'zkSync Era'],
-        ['OP Mainnet', 'Arbitrum', 'Base', 'Zora', 'Starknet', 'Linea', 'zkSync Era'])
+        ['OP Mainnet', 'Arbitrum', 'Base', 'Zora', 'Starknet', 'Linea', 'zkSync Era', 'Polygon zkEVM', 'Scroll'],
+        ['OP Mainnet', 'Arbitrum', 'Base', 'Zora', 'Starknet', 'Linea', 'zkSync Era', 'Polygon zkEVM', 'Scroll'])
     df = df[df['origin_key'].isin(options)]
 
     # start_time = st.slider(
