@@ -93,7 +93,7 @@ def main():
 
     start_time = st.slider(
         "Timespan",
-        value=datetime(2024, 3, 12, 12, 00),
+        value=[datetime(2024, 3, 12, 12, 00), datetime.now()],
         format="MM/DD/YY - hh:mm")
 
     df = df[df['datetime'] > start_time]
