@@ -69,7 +69,12 @@ def main():
         df = fetch_data()  # Assuming you want to load the existing data even if not updating
 
     st.header("Median Transaction Costs in USD")
-    st.subheader("Data from growthepie.xyz")
+    # Example hyperlink
+    url = "https://www.growthepie.xyz"
+    link_text = "Data from growthepie.xyz"
+    st.markdown(f'<a href="{url}" target="_blank">{link_text}</a>', unsafe_allow_html=True)
+
+    # st.subheader("Data from growthepie.xyz")
     plot_data(df)
     create_table(df)
 
