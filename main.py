@@ -32,6 +32,13 @@ def create_table(df):
     df = df.sort_values('unix', ascending=False).drop_duplicates('origin_key')
     df = df[['origin_key', 'value', 'datetime']]
     df.set_index('origin_key', inplace=True)
+
+    #order by value ascending
+    df = df.sort_values('value', ascending=True)
+
+    ## rename column value to "Median Transaction Costs in USD" and datetime to "Last Updated"
+    df.columns = ["Median Transaction Costs in USD", "Last Updated"]
+
     st.table(df)
 
 def main():
