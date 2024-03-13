@@ -2,8 +2,6 @@ import streamlit as st
 import pandas as pd
 import requests
 import time
-from datetime import datetime
-import plotly.express as px
 
 # Initialize or get the last run timestamp
 if 'last_run' not in st.session_state:
