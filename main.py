@@ -96,6 +96,7 @@ def main():
         min_value=datetime(2024, 3, 12, 1, 00),
         max_value=datetime.now(),
         value=datetime(2024, 3, 12, 11, 00),
+        step=time.timedelta(minutes=10),
         format="MM/DD/YY - hh:mm")
 
     df = df[df['datetime'] > start_time]
