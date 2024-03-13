@@ -91,12 +91,14 @@ def main():
         ['OP Mainnet', 'Arbitrum', 'Base', 'Zora', 'Starknet', 'Linea', 'zkSync Era'])
     df = df[df['origin_key'].isin(options)]
 
-    # start_time = st.slider(
-    #     "Timespan",
-    #     value=[datetime(2024, 3, 12, 12, 00), datetime.now()],
-    #     format="MM/DD/YY - hh:mm")
+    start_time = st.slider(
+        "Timespan",
+        min_value=datetime(2024, 3, 12, 12, 00),
+        max_value=datetime.now(),
+        value=datetime(2024, 3, 12, 12, 00),
+        format="MM/DD/YY - hh:mm")
 
-    # df = df[df['datetime'] > start_time]
+    df = df[df['datetime'] > start_time]
 
     plot_data(df)
     create_table(df)
