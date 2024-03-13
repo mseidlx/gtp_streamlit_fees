@@ -127,7 +127,7 @@ def create_dataframe(df, metric_key):
             #     help="The average cost of a transaction in USD",
             #     format="$%f",
             # ),
-            # "Native Transfer": None,
+            "Native Transfer": None,
         },
         hide_index=True,
         width=1200,
