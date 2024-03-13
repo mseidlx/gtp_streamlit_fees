@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # Initialize or get the last run timestamp
 if 'last_run' not in st.session_state:
@@ -96,7 +96,7 @@ def main():
         min_value=datetime(2024, 3, 12, 1, 00),
         max_value=datetime.now(),
         value=datetime(2024, 3, 12, 11, 00),
-        step=time.timedelta(minutes=10),
+        step=timedelta(minutes=10),
         format="MM/DD/YY - hh:mm")
 
     df = df[df['datetime'] > start_time]
