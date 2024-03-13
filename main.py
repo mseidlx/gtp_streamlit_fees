@@ -39,8 +39,6 @@ def plot_data(df):
     df.rename(columns={'datetime': 'Date', 'value': 'Median Transaction Costs', 'origin_key' : 'Chain'}, inplace=True)
     df.reset_index(drop=True, inplace=True)
 
-    print(df.head())
-
     st.line_chart(df, x='Date', y='Median Transaction Costs', color='Chain')
 
 def create_table(df):
