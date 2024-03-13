@@ -47,7 +47,6 @@ def main():
     st.header("Median Transaction Costs in USD")
     st.subheader("Data from growthepie.xyz")
     plot_data(df)
-    plot_plotly(df)
     create_table(df)
 
 if __name__ == "__main__":
