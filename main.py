@@ -25,7 +25,7 @@ def fetch_data():
 
 def plot_data(df):
     # Convert unix timestamp to datetime for better readability on plot
-    df['datetime'] = pd.to_datetime(df['unix'], unit='s')
+    df['datetime'] = pd.to_datetime(df['unix'], unit='ms')
     
     st.line_chart(df, x='datetime', y='value')
 
