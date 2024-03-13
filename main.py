@@ -19,16 +19,19 @@ def fetch_data():
     # Filter based on conditions
     filtered_df = df[(df['metric_key'] == 'txcosts_median_usd') & (df['granularity'] == 'hourly')]
     
-    # ## break up origin_keys into separate columns
-    # filtered_df.pivot_table(index='unix', columns='origin_key', values='value')
+    # Convert unix timestamp to datetime for better readability on plot
+    df['datetime'] = pd.to_datetime(df['unix'], unit='ms')
 
     return filtered_df
 
 def plot_data(df):
-    # Convert unix timestamp to datetime for better readability on plot
-    df['datetime'] = pd.to_datetime(df['unix'], unit='ms')
-    
     st.line_chart(df, x='datetime', y='value', color='origin_key')
+
+def create_table(df):
+    ## order by unix desc and only keep latest value per origin_key
+    df = df.sort_values('unix', ascending=False).drop_duplicates('origin_key')
+    df = df[['origin_key', 'value', 'datetime']]
+    st.table(df)
 
 def main():
     # Check if 5 minutes have passed since the last API call
@@ -41,6 +44,7 @@ def main():
         df = fetch_data()  # Assuming you want to load the existing data even if not updating
 
     plot_data(df)
+    create_table(df)
 
 if __name__ == "__main__":
     main()
