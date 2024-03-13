@@ -80,11 +80,7 @@ def main():
         df = fetch_data()  # Assuming you want to load the existing data even if not updating
 
     st.header("Median Transaction Costs in USD")
-    # Example hyperlink
-    url = "https://www.growthepie.xyz"
-    link_text = "Data from growthepie.xyz"
-    st.markdown(f'<a href="{url}" target="_blank">{link_text}</a>', unsafe_allow_html=True)
-
+    
     options = st.multiselect(
         'Chains',
         ['OP Mainnet', 'Arbitrum', 'Base', 'Zora', 'Starknet', 'Linea', 'zkSync Era'],
@@ -103,6 +99,10 @@ def main():
 
     plot_data(df)
     create_table(df)
+
+    url = "https://www.growthepie.xyz"
+    link_text = "Data from growthepie.xyz"
+    st.markdown(f'<a href="{url}" target="_blank">{link_text}</a>', unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
