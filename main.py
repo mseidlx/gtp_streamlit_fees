@@ -111,7 +111,7 @@ def create_dataframe(df, metric_key):
     df_clean.rename(columns={'value': 'Median Tx Costs'}, inplace=True)
 
     st.dataframe(
-        df,
+        df_clean,
         column_config={
             "origin_key": "Chain",
             "Median Tx Costs": st.column_config.LineChartColumn(
