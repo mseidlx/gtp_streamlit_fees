@@ -34,7 +34,7 @@ def plot_plotly(df):
     fig.update_traces(mode="markers+lines", hovertemplate=None)
     fig.update_layout(hovermode="x")
 
-    fig.show()
+    st.plotly_chart(fig, use_container_width=True)
 
 def create_table(df):
     ## order by unix desc and only keep latest value per origin_key
