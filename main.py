@@ -64,7 +64,7 @@ def plot_plotly(df):
         legend=dict(
             orientation="h",  # Horizontal orientation
             yanchor="bottom",
-            y=-0.5,  # Negative y positions the legend below the chart
+            y=-0.25,  # Negative y positions the legend below the chart
             xanchor="center",
             x=0.5
         )
