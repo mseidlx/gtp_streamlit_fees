@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 import time
-from datetime import datetime, timedelta
+import plotly.express as px
 
 # Initialize or get the last run timestamp
 if 'last_run' not in st.session_state:
@@ -43,6 +43,26 @@ def plot_data(df):
     df.reset_index(drop=True, inplace=True)
 
     st.line_chart(df, x='Date', y='Median Transaction Costs', color='Chain', height=450, width=1200)
+
+def plot_plotly(df):
+    df = df.copy()
+    df = df[(df['metric_key'] == 'txcosts_median_usd')]
+    df.rename(columns={'datetime': 'Date', 'value': 'Median Transaction Costs', 'origin_key' : 'Chain'}, inplace=True)
+    df.reset_index(drop=True, inplace=True)
+    df = df.sort_values(by=['Date', 'Chain'])
+
+    fig = px.line(df, x='Date', y='Median Transaction Costs', color='Chain')
+
+    for i, trace in enumerate(fig.data):
+        trace.hovertemplate = '%{fullData.name}<br>$%{y:.4f}<extra></extra>'
+
+    fig.update_layout(
+        yaxis_title=None,
+        xaxis_title=None,
+        legend_title=None,
+        hovermode='x unified',
+    )
+    st.plotly_chart(fig, use_container_width=True)
 
 def create_df_clean(df):
     ## order by unix desc and only keep latest value per origin_key
@@ -122,7 +142,7 @@ def main():
         st.session_state['last_run'] = current_time
         st.rerun()
     else:
-        df = fetch_data()  # Assuming you want to load the existing data even if not updating
+        df = fetch_data()
 
     st.header("EIP 4844 Tracker")
     
@@ -143,6 +163,8 @@ def main():
 
     link_text = "Twitter Profile"
     st.markdown(f'<a href="https://twitter.com/growthepie_eth" target="_blank">{link_text}</a>', unsafe_allow_html=True)
+
+    plot_plotly(df)
 
 if __name__ == "__main__":
     main()
