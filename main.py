@@ -139,7 +139,7 @@ def main():
     st.set_page_config(page_title="growthepie - EIP4844 Tracker", page_icon= "https://i.ibb.co/RbSqMg2/Logo-with-Whitespace.png")
     #st.image('gtp-logo-on-white.png', width=300)
     url = "https://www.growthepie.xyz"
-    image_url = "https://i.ibb.co/yd5B6Kj/gtp-logo-on-white.png" 
+    image_url = "https://i.ibb.co/gJtMpFp/gtp-fees-dark.png" 
     st.markdown(f"[![Alt Text]({image_url})]({url})", unsafe_allow_html=True)
 
     # Check if 5 minutes have passed since the last API call
