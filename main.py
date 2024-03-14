@@ -61,6 +61,13 @@ def plot_plotly(df):
         xaxis_title=None,
         legend_title=None,
         hovermode='x unified',
+        legend=dict(
+            orientation="h",  # Horizontal orientation
+            yanchor="bottom",
+            y=-0.5,  # Negative y positions the legend below the chart
+            xanchor="center",
+            x=0.5
+        )
     )
     st.plotly_chart(fig, use_container_width=True)
 
@@ -155,7 +162,8 @@ def main():
 
     st.subheader("Median Transaction Costs in USD")
     st.text("Data is updated in 10 minute intervals. Cheap Tx here we come!")
-    plot_data(df)
+    plot_plotly(df)
+    #plot_data(df)
     create_dataframe(df, 'txcosts_median_usd')
 
     link_text = "Data from growthepie.xyz"
@@ -164,7 +172,7 @@ def main():
     link_text = "Twitter Profile"
     st.markdown(f'<a href="https://twitter.com/growthepie_eth" target="_blank">{link_text}</a>', unsafe_allow_html=True)
 
-    plot_plotly(df)
+    
 
 if __name__ == "__main__":
     main()
