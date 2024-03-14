@@ -82,9 +82,9 @@ def create_df_clean(df):
     df = df.sort_values('txcosts_avg_usd', ascending=True)
 
     ##value column in USD
-    df['txcosts_avg_usd'] = df['txcosts_avg_usd'].apply(lambda x: f"${x:,.3f}")
-    df['txcosts_median_usd'] = df['txcosts_median_usd'].apply(lambda x: f"${x:,.3f}")
-    df['txcosts_native_median_usd'] = df['txcosts_native_median_usd'].apply(lambda x: f"${x:,.3f}")
+    df['txcosts_avg_usd'] = df['txcosts_avg_usd'].apply(lambda x: f"${x:,.4f}")
+    df['txcosts_median_usd'] = df['txcosts_median_usd'].apply(lambda x: f"${x:,.4f}")
+    df['txcosts_native_median_usd'] = df['txcosts_native_median_usd'].apply(lambda x: f"${x:,.4f}")
 
     ## rename column value to "Median Transaction Costs in USD" and datetime to "Last Updated"
     df.rename(columns={'datetime': 'Last Updated (UTC)', 'txcosts_median_usd': 'Median Tx Costs', 'txcosts_avg_usd': 'Avg Tx Costs', 'txcosts_native_median_usd': 'Native Transfer'}, inplace=True)
