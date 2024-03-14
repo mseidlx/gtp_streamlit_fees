@@ -142,14 +142,7 @@ def main():
     image_url = "https://i.ibb.co/gJtMpFp/gtp-fees-dark.png" 
     st.markdown(f"[![Alt Text]({image_url})]({url})", unsafe_allow_html=True)
 
-    # Check if 5 minutes have passed since the last API call
-    current_time = time.time()
-    if current_time - st.session_state['last_run'] > 300:  # 5 minutes in seconds
-        df = fetch_data()
-        st.session_state['last_run'] = current_time
-        st.rerun()
-    else:
-        df = fetch_data()
+    df = fetch_data()
 
     st.header("EIP 4844 Tracker")
     
