@@ -138,9 +138,15 @@ def create_dataframe(df, metric_key):
 def main():
     st.set_page_config(page_title="growthepie - EIP4844 Tracker", page_icon= "https://i.ibb.co/RbSqMg2/Logo-with-Whitespace.png")
     #st.image('gtp-logo-on-white.png', width=300)
-    url = "https://www.growthepie.xyz"
-    image_url = "https://i.ibb.co/gJtMpFp/gtp-fees-dark.png" 
+
+    st.info("This page will slowly be deprecated as we created a better, more integrated fees page. Please visit [growthepie.xyz](https://fees.growthepie.xyz) for the latest data.")
+
+    url = "https://fees.growthepie.xyz"
+    image_url = "https://i.ibb.co/2YrQDMM/Screenshot-2024-04-24-120919.png" 
     st.markdown(f"[![Alt Text]({image_url})]({url})", unsafe_allow_html=True)
+
+
+    st.divider()
 
     df = fetch_data()
 
