@@ -139,7 +139,7 @@ def main():
     st.set_page_config(page_title="growthepie - EIP4844 Tracker", page_icon= "https://i.ibb.co/RbSqMg2/Logo-with-Whitespace.png")
     #st.image('gtp-logo-on-white.png', width=300)
 
-    st.info("This page will slowly be deprecated as we created a better, more integrated fees page. Please visit [growthepie.xyz](https://fees.growthepie.xyz) for the latest data.")
+    st.info("This page will slowly be deprecated as we created a better, more integrated fees page. Please visit [fees.growthepie.xyz](https://fees.growthepie.xyz) for the latest data and features.")
 
     url = "https://fees.growthepie.xyz"
     image_url = "https://i.ibb.co/2YrQDMM/Screenshot-2024-04-24-120919.png" 
@@ -147,10 +147,12 @@ def main():
 
 
     st.divider()
+    st.divider()
+    st.divider()
 
     df = fetch_data()
 
-    st.header("EIP 4844 Tracker")
+    st.header("EIP 4844 Tracker (outdated - see info above)")
     
     options = st.multiselect(
         'Chains',
